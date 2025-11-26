@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 namespace App\Http\Controllers;
 
 use App\Models\Kategori;
@@ -21,35 +20,36 @@ class KategoriController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_kategori' => 'required|string|max:100'
+            'nama_kategori' => 'required|string|max:255',
         ]);
 
         Kategori::create($request->all());
-        return redirect()->route('kategori.index')->with('success','Kategori berhasil ditambahkan');
+        return redirect()->route('kategori.index')->with('success', 'Kategori berhasil ditambahkan');
     }
 
-    public function show($id)
+    public function show(Kategori $kategori)
     {
-        $kategori = Kategori::findOrFail($id);
         return view('kategori.show', compact('kategori'));
     }
 
-    public function edit($id)
+    public function edit(Kategori $kategori)
     {
-        $kategori = Kategori::findOrFail($id);
         return view('kategori.edit', compact('kategori'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Kategori $kategori)
     {
-        $kategori = Kategori::findOrFail($id);
+        $request->validate([
+            'nama_kategori' => 'required|string|max:255',
+        ]);
+
         $kategori->update($request->all());
-        return redirect()->route('kategori.index')->with('success','Kategori berhasil diupdate');
+        return redirect()->route('kategori.index')->with('success', 'Kategori berhasil diperbarui');
     }
 
-    public function destroy($id)
+    public function destroy(Kategori $kategori)
     {
-        Kategori::destroy($id);
-        return redirect()->route('kategori.index')->with('success','Kategori berhasil dihapus');
+        $kategori->delete();
+        return redirect()->route('kategori.index')->with('success', 'Kategori berhasil dihapus');
     }
 }

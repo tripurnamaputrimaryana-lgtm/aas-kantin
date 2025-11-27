@@ -1,11 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 
 @section('content')
 <div class="container mt-4">
-    <div class="card shadow-sm border-0">
-        <div class="card-header bg-primary text-white fw-bold">
-            Detail Produk
-        </div>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="fw-bold text-primary">Detail Produk</h2>
+    </div>
         <div class="card-body">
             <p><strong>Nama Produk:</strong> {{ $produk->nama_produk }}</p>
             <p><strong>Harga:</strong> Rp {{ number_format($produk->harga,0,',','.') }}</p>

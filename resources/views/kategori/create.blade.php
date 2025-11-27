@@ -12,6 +12,9 @@
                 <div class="mb-3">
                     <label class="form-label text-primary">Nama Kategori</label>
                     <input type="text" name="nama_kategori" class="form-control" required>
+                    @error('nama_kategori')
+                    <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <button href="{{ route('kategori.index') }}" class="btn btn-success btn-sm">
                     <i class="bi bi-pencil-square"></i> Simpan
